@@ -40,6 +40,6 @@ manifest:
       revision: main
     - name: zmk-config-klor
       remote: nelreth
-      revision: master
+      revision: main
   self:
     path: config
