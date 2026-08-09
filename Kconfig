@@ -7,3 +7,23 @@ config ZMK_BEHAVIOR_DEAD_KEY
   bool
   default y
   depends on DT_HAS_ZMK_BEHAVIOR_DEAD_KEY_ENABLED
+
+if SHIELD_KLOR_DONGLE || SHIELD_KLOR_LEFT
+
+    config ZMK_KEYBOARD_NAME
+        default "KLOR"
+
+    config ZMK_SPLIT_BLE_ROLE_CENTRAL
+        default y
+
+    config ZMK_USB
+        default y
+
+endif
+
+if SHIELD_KLOR_DONGLE || SHIELD_KLOR_LEFT || SHIELD_KLOR_RIGHT
+
+    config ZMK_SPLIT
+        default y
+
+endif
