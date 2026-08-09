@@ -14,10 +14,6 @@ manifest:
       url-base: https://github.com/rschenk
     - name: nelreth
       url-base: https://github.com/nelreth
-  projects:
-    - name: zmk
-      remote: zmkfirmware
-      revision: main
       # Pin ZMK to the latest board fix of the `main` branch on 2026-06-13.
       # https://github.com/Nuclear-Squid/zmk-keyboard-quacken/pull/49#issuecomment-4153385353
       # https://github.com/OneDeadKey/zmk-config-aekeynox/pull/67
@@ -39,7 +35,7 @@ manifest:
       remote: rschenk
       revision: main
     - name: zmk-config-klor
-      remote: GEIGEIGEIST
+      remote: nelreth
       revision: master
   self:
     path: config
