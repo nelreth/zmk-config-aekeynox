@@ -17,7 +17,6 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      established: true
       revision: main
       # Pin ZMK to the latest board fix of the `main` branch on 2026-06-13.
       # https://github.com/Nuclear-Squid/zmk-keyboard-quacken/pull/49#issuecomment-4153385353
