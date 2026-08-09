@@ -8,21 +8,15 @@ config ZMK_BEHAVIOR_DEAD_KEY
   default y
   depends on DT_HAS_ZMK_BEHAVIOR_DEAD_KEY_ENABLED
 
-config ZMK_SPLIT_BLE_CENTRAL_PERIPHERALS
-    default 2
-
-if SHIELD_KLOR_DONGLE 
+if SHIELD_KLOR_LEFT || SHIELD_KLOR_DONGLE 
 
     config ZMK_KEYBOARD_NAME
-        default "KLOR-dongle"
+        default "KLOR2"
 
     config ZMK_SPLIT_BLE_ROLE_CENTRAL
         default y
 
     config ZMK_USB
-        default y
-
-    config ZMK_SPLIT
         default y
 
 endif
