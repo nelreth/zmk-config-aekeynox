@@ -41,5 +41,8 @@ manifest:
     - name: zmk-config-klor
       remote: nelreth
       revision: main
+    - name: prospector-zmk-module                 # <--- and these
+      remote: nelreth                          # <---
+      revision: main                             # <---
   self:
     path: config
