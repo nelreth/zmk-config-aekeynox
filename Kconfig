@@ -11,7 +11,7 @@ config ZMK_BEHAVIOR_DEAD_KEY
 if SHIELD_KLOR_DONGLE 
 
     config ZMK_KEYBOARD_NAME
-        default "KLOR"
+        default "KLOR_DONGLE"
 
     config ZMK_SPLIT_BLE_ROLE_CENTRAL
         default y
