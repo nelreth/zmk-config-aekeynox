@@ -8,10 +8,10 @@ config ZMK_BEHAVIOR_DEAD_KEY
   default y
   depends on DT_HAS_ZMK_BEHAVIOR_DEAD_KEY_ENABLED
 
-if SHIELD_KLOR_LEFT || SHIELD_KLOR_DONGLE 
+if SHIELD_KLOR_DONGLE 
 
     config ZMK_KEYBOARD_NAME
-        default "KLOR2"
+        default "KLOR"
 
     config ZMK_SPLIT_BLE_ROLE_CENTRAL
         default y
