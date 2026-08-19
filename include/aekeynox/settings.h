@@ -127,4 +127,4 @@
 // Uncomment the following line to swap Space and Backspace.
 // Beware: this increases the typing load of the left thumb.
 
-// #define LEFT_HAND_SPACE
+#define LEFT_HAND_SPACE
