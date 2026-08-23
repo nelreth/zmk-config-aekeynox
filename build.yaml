@@ -42,15 +42,15 @@ include:
   # => make sure the `board` field matches the MCU on your keyboard
   ##
 
-  # KLOR 
-  - board: xiao_ble//zmk
-    shield: klor_dongle prospector_adapter
-    snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y
+  # KLOR
+  # - board: xiao_ble//zmk
+  #   shield: klor_dongle prospector_adapter
+  #   snippet: studio-rpc-usb-uart
+  #   cmake-args: -DCONFIG_ZMK_STUDIO=y
   - board: nice_nano//zmk
     shield: klor_left
-    # snippet: studio-rpc-usb-uart
-    # cmake-args: -DCONFIG_ZMK_STUDIO=y   
+    snippet: studio-rpc-usb-uart
+    cmake-args: -DCONFIG_ZMK_STUDIO=y
   - board: nice_nano//zmk
     shield: klor_right
   # nice!nano v2 (Corne, Sweep, Lily58)
