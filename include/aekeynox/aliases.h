@@ -80,7 +80,3 @@
 #define X_MSC_U &msc SCRL_UP
 #define X_MSC_R &msc SCRL_RIGHT
 
-// Custom
-#ifdef MACOS
-  #define HR1 &kp LEFT_COMMAND(LS(SPACE))
-#endif
