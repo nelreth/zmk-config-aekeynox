@@ -73,7 +73,7 @@
 // are the ones that may produce text, including the space bar and home row mods.
 // Keep this value high if you struggle with home row mods.
 
-#define TAPPING_TERM 200
+#define TAPPING_TERM 100
 
 // This defines how quickly (in ms) you need to press and release a hold-tap
 // with the "hold-preferred" flavor for it to be considered a tap. These
@@ -127,4 +127,4 @@
 // Uncomment the following line to swap Space and Backspace.
 // Beware: this increases the typing load of the left thumb.
 
-#define LHAND_SPACE 
+#define LHAND_SPACE
