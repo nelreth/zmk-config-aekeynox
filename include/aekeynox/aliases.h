@@ -79,3 +79,8 @@
 #define X_MSC_D &msc SCRL_DOWN
 #define X_MSC_U &msc SCRL_UP
 #define X_MSC_R &msc SCRL_RIGHT
+
+// Custom
+#ifdef MACOS
+  #define HR1 &kp LCMD(RIGHT_SHIFT(SPACE))
+#endif
