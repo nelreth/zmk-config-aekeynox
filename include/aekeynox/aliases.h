@@ -82,5 +82,5 @@
 
 // Custom
 #ifdef MACOS
-  #define HR1 &kp LCMD(RIGHT_SHIFT(SPACE))
+  #define HR1 &kp LEFT_COMMAND(LS(SPACE))
 #endif
