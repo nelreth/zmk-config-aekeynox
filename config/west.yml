@@ -40,7 +40,7 @@ manifest:
       revision: main
     - name: zmk-config-klor
       remote: nelreth
-      revision: graphite
+      revision: main
     - name: prospector-zmk-module                 # <--- and these
       remote: nelreth                          # <---
       revision: main                             # <---
