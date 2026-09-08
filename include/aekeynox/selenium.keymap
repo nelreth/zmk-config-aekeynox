@@ -133,7 +133,8 @@
   #include "emulations/ergol.dtsi"
 #elif defined KB_EMULATION_QWERTY_LAFAYETTE
   #include "emulations/qwerty_lafayette.dtsi"
-
+#elif define KB_EMULATION_GRAPHITE
+  #include "emulations/graphite.dtsi"
 // Some layouts require extra layers to fit on the Quacken.
 #elif defined KB_LAYOUT_AZERTY
   #include "extra_layers/azerty.dtsi"
