@@ -42,6 +42,7 @@
 // #define KB_EMULATION_DVORAK           // host: QWERTY
 // #define KB_EMULATION_ERGOL            // host: QWERTY-intl or AZERTY
 // #define KB_EMULATION_QWERTY_LAFAYETTE // host: QWERTY-intl or AZERTY
+#define KB_EMULATION_GRAPHITE 
 
 // [Experimental]
 // Uncomment the following line for an extended character support on Windows.
