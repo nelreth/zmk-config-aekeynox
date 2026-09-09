@@ -29,6 +29,8 @@
   #include "aliases/bepo.h"
 #elifdef KB_LAYOUT_BEPOLAR
   #include "aliases/bepolar.h"
+#elifdef KB_LAYOUT_GRAPHITE
+  #include "aliases/graphite.h"
 
 #else
   #include "aliases/qwerty.h"
