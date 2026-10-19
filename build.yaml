@@ -128,6 +128,13 @@ include:
   #   snippet: studio-rpc-usb-uart
   #   cmake-args: *cmake-args
 
+  # Hummingbird + XIAO RP2040
+  - board: xiao_rp2040//zmk
+    shield: hummingbird
+    artifact-name: hummingbird
+    snippet: studio-rpc-usb-uart
+    cmake-args: *cmake-args
+
   ###
   # Standalone Keyboards (onboard MCU)
   ##
@@ -174,7 +181,10 @@ include:
   #   cmake-args: -DCONFIG_ZMK_STUDIO=y
 
   ###
-  # Resets
+  # BLE Resets
+  #
+  # Some Bluetooth connection issues require flashing/resettting the MCU,
+  # see: https://zmk.dev/docs/troubleshooting/connection-issues
   ##
 
   # XIAO BLE (Totem)

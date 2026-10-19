@@ -1,6 +1,3 @@
-#include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
-
 // clang-format off
 
 /**
@@ -14,12 +11,13 @@
 #define SYMBOLS_LAYER  2
 #define VIM_NAV_LAYER  3
 #define NAV_NUM_LAYER  4
-#define NUM_ROW_LAYER  5
-#define FN_MEDIA_LAYER 6
+#define CALLUM_LAYER   5
+#define NUM_ROW_LAYER  6
+#define FN_MEDIA_LAYER 7
 
 // Potentially used by other keymaps deriving from this one, who may add extra layers.
 // Make sure this stays equal to <index_of_last_layer> + 1
-#define EXTRA_LAYERS_START_INDEX 7
+#define EXTRA_LAYERS_START_INDEX 8
 
 
 /**
@@ -44,7 +42,7 @@
 #define UH3 hrm GUI_OPT
 #define UH4 hrm LSHIFT
 
-#if defined HT_HOME_ROW_MODS || defined HT_TWO_THUMB_KEYS
+#ifdef ENABLE_HOME_ROW_MODS
   #define H1 hrm ALT_CTL
   #define H2 hrm CTL_CMD
   #define H3 hrm GUI_OPT
@@ -52,6 +50,12 @@
   #define H1 kp
   #define H2 kp
   #define H3 kp
+#endif
+
+#if defined HRM_SHIFT
+  #define H4 hrm LSHIFT
+#else
+  #define H4 kp
 #endif
 
 #if defined HRM_SHIFT && defined PINKY_MOD_HOLD
@@ -68,13 +72,31 @@
  * Thumb Keys
  */
 
-#ifdef ENABLE_MOD_HOLD_NAVIGATION
-  #define NAV_SC &mhsc
+/ {
+  behaviors {
+    MOD_HOLD_1(mhmo, &mo, 0xff)
+    MOD_HOLD_2(mhsc, &sc, 0xff)
+    MOD_HOLD_2(mhlt, &lt, 0xff)
+  };
+};
+
+#ifdef ENABLE_MOD_HOLDS
+  #define MHMO mhmo
+  #define MHSC mhsc
+  #define MHLT mhlt
 #else
-  #define NAV_SC &sc
+  #define MHMO mo
+  #define MHSC sc
+  #define MHLT lt
 #endif
 
-#ifdef VIM_NAVIGATION
+#ifdef CALLUM_NAVIGATION
+  #define NAV_LAYER CALLUM_LAYER
+  #define NUM_LAYER NUM_ROW_LAYER
+  #define HRM_LAYER NUM_ROW_LAYER
+  #define S34_LAYER NUM_ROW_LAYER
+  #define REACH_TAP ESCAPE
+#elif defined VIM_NAVIGATION
   #define NAV_LAYER VIM_NAV_LAYER
   #define NUM_LAYER NUM_ROW_LAYER
   #define HRM_LAYER NUM_ROW_LAYER
@@ -97,56 +119,69 @@
 #ifdef LHAND_SPACE
   #define LTHUMB_TT  &hrm CTL_CMD SPACE
   #define RTHUMB_TT  &magic_backspace
-  #define LTHUMB_HRM &lt NAV_LAYER SPACE
+  #define LTHUMB_HRM &MHLT NAV_LAYER SPACE
   #define RTHUMB_HRM &magic_backspace
-  #define LTHUMB_S34 &lt NAV_LAYER SPACE
+  #define LTHUMB_S34 &MHLT NAV_LAYER SPACE
   #define RTHUMB_S34 &magic_backspace_34_keys
 #else
-  #define LTHUMB_TT  &hrm CTL_CMD BACKSPACE
+  #define LTHUMB_TT  &mt CTL_CMD BACKSPACE
   #define RTHUMB_TT  &magic_space
-  #define LTHUMB_HRM NAV_SC NAV_LAYER BACKSPACE
-  #define RTHUMB_HRM &lt NAV_LAYER SPACE
-  #define LTHUMB_S34 NAV_SC NAV_LAYER BACKSPACE
-  #define RTHUMB_S34 &lt S34_LAYER SPACE
+  #define LTHUMB_HRM &MHSC NAV_LAYER BACKSPACE
+  #define RTHUMB_HRM &MHLT NAV_LAYER SPACE
+  #define LTHUMB_S34 &MHSC NAV_LAYER BACKSPACE
+  #define RTHUMB_S34 &MHLT S34_LAYER SPACE
 #endif
 
 #ifdef HT_NONE
   #define LTHUMB_TUCK   &kp ALT_CTL
   #define LTHUMB_HOME   &kp CTL_CMD
   #define LTHUMB_REACH  &kp GUI_OPT
-  #define RTHUMB_REACH  &mo NAV_LAYER
+  #define RTHUMB_REACH  &MHMO NAV_LAYER
   #define RTHUMB_HOME   &kp SPACE
   #define RTHUMB_TUCK   &mo SYMBOLS_LAYER
 #elifdef HT_THUMB_TAPS
-  #define LTHUMB_TUCK   &EZ_SK(LSHIFT)
+  #define LTHUMB_TUCK   &shift_caps
   #define LTHUMB_HOME   LTHUMB_TT
   #define LTHUMB_REACH  &mt GUI_OPT REACH_TAP
   #define RTHUMB_REACH  &mt ALT_CTL ENTER
   #define RTHUMB_HOME   RTHUMB_TT
   #define RTHUMB_TUCK   &sym_shift_altgr
-#elifdef HT_HOME_ROW_MODS
-  #define LTHUMB_TUCK   &EZ_SK(LSHIFT)
-  #define LTHUMB_HOME   &sc HRM_LAYER REACH_TAP
-  #define LTHUMB_REACH  LTHUMB_HRM
-  #define RTHUMB_REACH  &sc HRM_LAYER ENTER
+#elif defined HT_HOME_ROW_MODS || defined HT_CALLUM_MODS
+  #define LTHUMB_TUCK   &shift_caps
+  #define LTHUMB_HOME   LTHUMB_HRM
+  #define LTHUMB_REACH  &MHSC FN_MEDIA_LAYER REACH_TAP
+  #define RTHUMB_REACH  &MHSC HRM_LAYER ENTER
   #define RTHUMB_HOME   RTHUMB_HRM
   #define RTHUMB_TUCK   &sym_shift_altgr
-#elifdef HT_TWO_THUMB_KEYS
+#elif defined HT_TWO_THUMB_KEYS || defined HT_CALLUM_MODS_2TK
   #define LTHUMB_TUCK   &mt LSHIFT REACH_TAP
   #define LTHUMB_HOME   LTHUMB_S34
   #define LTHUMB_REACH  LTHUMB_TUCK
-  #define RTHUMB_REACH  &sc SYMBOLS_LAYER ENTER
+  #define RTHUMB_REACH  &MHSC SYMBOLS_LAYER ENTER
   #define RTHUMB_HOME   RTHUMB_S34
   #define RTHUMB_TUCK   RTHUMB_REACH
+#elifdef HT_ARSENIK
+  #define LTHUMB_TUCK   &mt LSHIFT BACKSPACE
+  #define LTHUMB_HOME   &none
+  #define LTHUMB_REACH  &none
+  #define RTHUMB_REACH  &none
+  #define RTHUMB_HOME   &MHLT NAV_LAYER SPACE
+  #define RTHUMB_TUCK   &sc SYMBOLS_LAYER ENTER
 #endif
 
-// nav_num layer thumb cluster
-#ifdef HT_TWO_THUMB_KEYS
-  #define NAV_LTHUMB_TUCK   &kp LS(TAB)
-  #define NAV_LTHUMB_REACH  &none
+// nav layers' thumb keys
+#ifdef HT_ARSENIK
+  #define NAV_LTHUMB_TUCK  &mt LSHIFT DEL
+  #define VIM_LTHUMB_TUCK  NAV_LTHUMB_TUCK
+  #define NAV_RTHUMB_TUCK  &mo FN_MEDIA_LAYER
+#elifdef HT_TWO_THUMB_KEYS
+  #define NAV_LTHUMB_TUCK  &kp LS(TAB)
+  #define VIM_LTHUMB_TUCK  &mt LSHIFT CAPSLOCK
+  #define NAV_RTHUMB_TUCK  &EZ_LSK(RALT)
 #else
-  #define NAV_LTHUMB_TUCK   &kp CAPS
-  #define NAV_LTHUMB_REACH  &kp LS(TAB)
+  #define NAV_LTHUMB_TUCK  &mt LSHIFT CAPSLOCK
+  #define VIM_LTHUMB_TUCK  NAV_LTHUMB_TUCK
+  #define NAV_RTHUMB_TUCK  &EZ_LSK(RALT)
 #endif
 
 
@@ -220,27 +255,42 @@
       tapping-term-ms = <TAPPING_TERM>;
       flavor = "tap-preferred";
       bindings = <&kp>, <&osm>;
+      hold-while-undecided;
+    };
+
+    // mod‐morph to have Capslock on double‐tap Shift
+    OMIT_IF_NO_REF shift_caps: shift_caps {
+      compatible = "zmk,behavior-mod-morph";
+      #binding-cells = <0>;
+      bindings  = <&EZ_SK(LSHIFT)>, <&unshift_caps>;
+      mods      = <(MOD_LSFT)>;
+    };
+    // removes Sticky Left Shift before activating caps word
+    OMIT_IF_NO_REF unshift_caps: unshift_caps {
+      compatible = "zmk,behavior-macro";
+      #binding-cells = <0>;
+      bindings = <&macro_tap &kp K_CANCEL>, <&caps_word>;
     };
 
     // mod-morphs to restore Shift+Space and Ctrl+Backspace for certain keymaps
     OMIT_IF_NO_REF magic_backspace: magic_backspace {
       compatible = "zmk,behavior-mod-morph";
       #binding-cells = <0>;
-      bindings = <&sc NAV_LAYER BACKSPACE>, <&lt NAV_LAYER SPACE>;
+      bindings = <&MHSC NAV_LAYER BACKSPACE>, <&MHLT NAV_LAYER SPACE>;
       mods      = <MOD_LSFT>;
       keep-mods = <MOD_LSFT>;
     };
     OMIT_IF_NO_REF magic_space: magic_space {
       compatible = "zmk,behavior-mod-morph";
       #binding-cells = <0>;
-      bindings = <&lt NAV_LAYER SPACE>, <&sc NAV_LAYER BACKSPACE>;
+      bindings = <&MHLT NAV_LAYER SPACE>, <&MHSC NAV_LAYER BACKSPACE>;
       mods      = <MOD_LCTL>;
       keep-mods = <MOD_LCTL>;
     };
     OMIT_IF_NO_REF magic_backspace_34_keys: magic_backspace_34_keys {
       compatible = "zmk,behavior-mod-morph";
       #binding-cells = <0>;
-      bindings = <&sc HRM_LAYER BACKSPACE>, <&lt HRM_LAYER SPACE>;
+      bindings = <&MHSC HRM_LAYER BACKSPACE>, <&MHLT HRM_LAYER SPACE>;
       mods      = <MOD_LSFT>;
       keep-mods = <MOD_LSFT>;
     };
@@ -296,14 +346,6 @@
       bindings = <&lkp>, <&losm>;
     };
 
-    // Fancy behaviors for one-handed Alt(+Shift)+{tab,backtick}
-    OMIT_IF_NO_REF mhsc: space_cade_with_held_mods {
-      compatible = "zmk,behavior-mod-hold";
-      #binding-cells = <2>;
-      binding = <&sc>;
-      mods-to-hold = <MOD_LALT>;
-    };
-
     OMIT_IF_NO_REF vim_prev: vim_prev {
       compatible = "zmk,behavior-mod-morph";
       #binding-cells = <0>;
@@ -318,29 +360,6 @@
       bindings = <&kp LA(RIGHT)>, <&kp GRAVE>;
       mods      = <(MOD_LALT|MOD_LGUI)>;
       keep-mods = <(MOD_LALT|MOD_LGUI)>;
-    };
-
-    OMIT_IF_NO_REF mh: raw_mod_hold {
-      compatible = "zmk,behavior-mod-hold";
-      #binding-cells = <2>;
-      binding = <&none>;
-      mods-to-hold = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
-    };
-
-    OMIT_IF_NO_REF mhkp: hrm_with_raw_mh_on_hold {
-      compatible = "zmk,behavior-hold-tap";
-      #binding-cells = <2>;
-      tapping-term-ms = <TAPPING_TERM>;
-      quick-tap-ms = <QUICK_TAP>;
-      flavor = "tap-preferred";
-      bindings = <&mh>, <&kp>;
-    };
-
-    OMIT_IF_NO_REF mhhrm: hrm_with_held_mods {
-      compatible = "zmk,behavior-mod-hold";
-      #binding-cells = <2>;
-      binding = <&hrm>;
-      mods-to-hold = <(MOD_LCTL|MOD_RCTL|MOD_LALT|MOD_RALT|MOD_LGUI|MOD_RGUI)>;
     };
   };
 };
