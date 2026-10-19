@@ -16,7 +16,6 @@
 #define NAV_NUM_LAYER  4
 #define NUM_ROW_LAYER  5
 #define FN_MEDIA_LAYER 6
-#define GAME_LAYER     7
 
 // Potentially used by other keymaps deriving from this one, who may add extra layers.
 // Make sure this stays equal to <index_of_last_layer> + 1
