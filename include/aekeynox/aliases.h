@@ -79,6 +79,8 @@
   #include "aliases/ergol.h"
 #elifdef KB_LAYOUT_QWERTY_LAFAYETTE
   #include "aliases/qwerty_lafayette.h"
+#elifdef KB_LAYOUT_GRAPHITE
+  #include "aliases/graphite.h"
 
 // US QWERTY (+ programmers' variants)
 #elifdef KB_LAYOUT_QWERTY_INTL
@@ -129,3 +131,24 @@
   #define S_N8  &kp N8
   #define S_N9  &kp N9
 #endif
+
+// Non-Alpha Actions
+
+#define X_SHTAB &kp RS(TAB)
+#ifdef MACOS
+  #define X_PREV &kp LG(LBKT)
+  #define X_NEXT &kp LG(RBKT)
+#else
+  #define X_PREV &kp LA(LEFT)
+  #define X_NEXT &kp LA(RIGHT)
+#endif
+
+// Mouse Actions
+#define ZMK_POINTING_DEFAULT_SCRL_VAL 25  // increase from the default 10 which is too slow
+#include <dt-bindings/zmk/pointing.h>
+
+#define X_MSC_L &msc SCRL_LEFT
+#define X_MSC_D &msc SCRL_DOWN
+#define X_MSC_U &msc SCRL_UP
+#define X_MSC_R &msc SCRL_RIGHT
+

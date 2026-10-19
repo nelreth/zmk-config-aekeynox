@@ -37,11 +37,12 @@
 // #define KB_LAYOUT_QWERTZ_HR         // Bosnia, Croatia, Serbia, Slovenia
 // #define KB_LAYOUT_QWERTZ_HU         // Hungary
 // #define KB_LAYOUT_QWERTZ_SK         // Slovakia
+#define KB_LAYOUT_GRAPHITE
 
 // Some keyboard layouts and shortcuts may vary between Windows / macOS / Linux.
 // Uncomment one of the following lines if the host computer doen't run Windows.
 
-// #define MACOS
+#define MACOS
 // #define LINUX
 
 
@@ -83,6 +84,7 @@
 // #define KB_EMULATION_DVORAK           // host: QWERTY
 // #define KB_EMULATION_ERGOL            // host: QWERTY-intl or AZERTY
 // #define KB_EMULATION_QWERTY_LAFAYETTE // host: QWERTY-intl or AZERTY
+#define KB_EMULATION_GRAPHITE 
 
 // [Experimental]
 // Uncomment the following line for an extended character support on Windows.
@@ -115,7 +117,7 @@
 // are the ones that may produce text, including the space bar and home row mods.
 // Keep this value high if you struggle with home row mods.
 
-// #define TAPPING_TERM 300
+// #define TAPPING_TERM 100
 
 // This defines how quickly (in ms) you need to press and release a hold-tap
 // with the "hold-preferred" flavor for it to be considered a tap. These
@@ -144,7 +146,7 @@
 //  + Escape under the left thumb (direct access)
 // Highly recommended for Vim users, obviously. :-)
 
-// #define VIM_NAVIGATION
+#define VIM_NAVIGATION
 
 // [Experimental]
 // Uncomment the following line to enable the Callum variant of the previous
@@ -184,3 +186,4 @@
 // supported.
 
 // #define ENABLE_HUMMINGBIRD_MODE
+#define LHAND_SPACE

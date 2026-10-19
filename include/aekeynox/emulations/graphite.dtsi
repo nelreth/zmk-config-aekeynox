@@ -1,0 +1,8 @@
+&base_layer {
+  bindings = <SELENIUM_KEYMAP_BINDINGS(
+    &kp TAB    ,  &kp B  &kp L  &kp D  &kp W  &kp Z   ,   &kp COMMA  &kp F  &kp O     &kp U     &kp J  ,  &kp BACKSPACE ,
+    &kp ESCAPE ,  &H4 N  &H3 R  &H2 T  &H1 S  &kp G   ,   &kp Y      &H1 H  &H2 A     &H3 E     &H4 I     ,  &kp ENTER     ,
+    &kp LSHIFT ,  &kp Q  &kp X  &kp M  &kp C  &kp V   ,   &kp K      &kp P  &kp DOT   &kp COMMA &kp FSLH  ,  &kp RSHIFT    ,
+           LTHUMB_TUCK , LTHUMB_HOME , LTHUMB_REACH   ,   RTHUMB_REACH , RTHUMB_HOME , RTHUMB_TUCK
+  )>;
+};

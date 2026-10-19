@@ -58,6 +58,15 @@
   #define H4 kp
 #endif
 
+#if defined HRM_SHIFT && defined PINKY_MOD_HOLD
+  #define H4 mhhrm LSHIFT
+#elif defined HRM_SHIFT
+  #define H4 hrm LSHIFT
+#elif defined PINKY_MOD_HOLD
+  #define H4 mhkp 0
+#else
+  #define H4 kp
+#endif
 
 /**
  * Thumb Keys
