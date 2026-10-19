@@ -45,7 +45,7 @@ manifest:
       # as that key is held
     - name: zmk-behavior-mod-hold
       remote: NuclearSquid
-      revision: aekeynox
+      revision: main
 
       ###
       # Community keyboards (not officially supported by ZMK)
