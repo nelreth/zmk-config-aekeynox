@@ -26,6 +26,12 @@ manifest:
     - name: zmk-keyboard-quacken
       remote: NuclearSquid
       revision: zmk-main
+    - name: zmk-behavior-dead-key
+      remote: NuclearSquid
+      revision: aekeynox 
+    - name: zmk-behavior-mod-hold
+      remote: NuclearSquid
+      revision: aekeynox
     - name: zmk-config-totem
       remote: cfergeau
       revision: zmk-module

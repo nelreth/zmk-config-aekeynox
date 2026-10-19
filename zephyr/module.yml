@@ -1,6 +1,6 @@
 name: zmk-config-aekeynox
 build:
-  cmake: .
-  kconfig: Kconfig
+  # cmake: .
+  # kconfig: Kconfig
   settings:
     dts_root: .
