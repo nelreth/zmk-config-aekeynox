@@ -38,8 +38,6 @@
   };
 
 &caps_word {
-  no-default-keys;
-  shift-list = <CAPS_WORD_SHIFT_LIST>;
   continue-list = <
     CAPS_WORD_CONTINUE_LIST
     CAPS_WORD_NUMBERS
